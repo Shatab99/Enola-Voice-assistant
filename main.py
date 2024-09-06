@@ -1,17 +1,10 @@
-import datetime
-import wikipediaapi as wikipedia
-import webbrowser
-import os
-from functions import speak,wishMe,takeCommand
+import wikipedia
+from functions import speak,wishMe,takeCommand,wiki
 from app import fetchCommand
 from EnolnaData import data
 
 
-def enolaTalk(command, response):
-    if command in query :
-        speak(response)
 
-flag = False
 
 
 if __name__ == "__main__":
@@ -20,11 +13,15 @@ if __name__ == "__main__":
     while True:
     # if 1:
         query = takeCommand().lower()
+        
+        if "from wikipedia" in query :
+            speak('searching wikipedia. please wait...')
+            query = query.replace('wikipedia', "")
+            result = wikipedia.summary(query, sentences=1)
+            speak(result) 
+        
         for coms in data:
-            if fetchCommand(coms['req'],coms['res'], query):
-                flag = True
-                break
-    
-        if not flag:
-            speak("Sorry , I can not understand !")
+            fetchCommand(coms['req'],coms['res'], query)
+
+
         

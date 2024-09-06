@@ -1,6 +1,7 @@
 from app import speak,takeCommand
 import datetime
-import wikipediaapi as wikipedia
+import  wikipedia
+
 
 
 def wishMe():
@@ -34,16 +35,23 @@ def askAbout():
     elif 'ill' in ask:
         speak("ow I am really sorry for your condition !!")
 
+# def wiki(query):
+#     speak("I can not tell about this . should I search it from wikipedia")
+#     wiki = takeCommand()
+#     if 'yes' in wiki:
+#         speak('searching wikipedia. please wait...')
+#         wiki = wiki.replace('wikipedia', "")
+#         result = wikipedia.summary(query, sentences=1) 
+#         speak(result)
+#     elif 'No' in wiki:
+#         speak("Ok sir!!Your Wish!!") 
+
 def wiki():
-    speak("I can not tell about this . should I search it from wikipedia")
-    wiki = takeCommand()
-    if 'yes' in wiki:
-        speak('searching wikipedia. please wait...')
-        wiki = wiki.replace('wikipedia', "")
-        result = wikipedia.summary(query, sentences=1) # type: ignore
-        speak(result)
-    elif 'No' in wiki:
-        speak("Ok sir!!Your Wish!!") 
+    speak('searching wikipedia. please wait...')
+    query = query.replace('wikipedia', "")
+    result = wikipedia.summary(query, sentences=1)
+    speak(result) 
+
 
 def knock():
     speak("who is there?")

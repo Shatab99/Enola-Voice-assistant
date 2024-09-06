@@ -38,7 +38,9 @@ def takeCommand():
 
 def fetchCommand(question, answer, query):
     if question in query :
-        print(answer)
-        speak(answer)
+        if callable(answer):
+            answer()  # Call the function if it's callable
+        else:
+            speak(answer)
         return True
     return False
